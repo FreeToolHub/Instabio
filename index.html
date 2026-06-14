@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstaBio - Instagram Bio Generator</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+font-size:2.5rem;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#94a3b8;
+margin-bottom:30px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+input,select{
+width:100%;
+padding:14px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#334155;
+color:white;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#3b82f6;
+color:white;
+font-size:16px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#2563eb;
+}
+
+.bio-card{
+background:#1e293b;
+padding:15px;
+border-radius:12px;
+margin-bottom:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.bio-text{
+flex:1;
+white-space:pre-line;
+}
+
+.copy-btn{
+width:auto;
+padding:10px 15px;
+margin:0;
+background:#10b981;
+}
+
+.copy-btn:hover{
+background:#059669;
+}
+
+.footer{
+text-align:center;
+margin-top:30px;
+color:#94a3b8;
+}
+
+@media(max-width:600px){
+.bio-card{
+flex-direction:column;
+align-items:stretch;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🚀 InstaBio</h1>
+<p class="subtitle">Generate Professional Instagram Bios Instantly</p>
+
+<div class="card">
+<label>Name</label>
+<input type="text" id="name" placeholder="Enter your name">
+
+<label style="margin-top:15px;display:block;">Category</label>
+<select id="category">
+<option>Creator</option>
+<option>Business</option>
+<option>Fitness</option>
+<option>Gamer</option>
+<option>Tech</option>
+<option>Influencer</option>
+<option>Student</option>
+<option>Entrepreneur</option>
+</select>
+
+<button onclick="generateBios()">Generate 20 Bios</button>
+</div>
+
+<div id="results"></div>
+
+<div class="footer">
+Made with ❤️ by InstaBio
+</div>
+
+</div>
+
+<script>
+
+function generateBios(){
+
+const name = document.getElementById("name").value || "Your Name";
+const category = document.getElementById("category").value;
+
+const bios = [
+
+`✨ ${name}
+${category}
+Dream. Build. Repeat.
+📩 DM For Collaboration`,
+
+`🚀 ${name}
+${category} Enthusiast
+Turning Ideas Into Reality
+👇 Follow My Journey`,
+
+`🔥 ${name}
+Passionate ${category}
+Creating Value Every Day
+📍 India`,
+
+`💎 ${name}
+${category}
+Work Hard • Stay Humble
+📬 Open For Projects`,
+
+`⚡ ${name}
+Digital ${category}
+Growth Mindset
+📈 Leveling Up Daily`,
+
+`🌍 ${name}
+${category}
+Making Every Day Count
+✨ Positive Vibes Only`,
+
+`🎯 ${name}
+${category}
+Focused On Success
+🚀 Future Millionaire`,
+
+`👑 ${name}
+Official Account
+${category}
+📩 Business Inquiries Open`,
+
+`💡 ${name}
+Innovator | ${category}
+Creating Something Amazing
+👇 Stay Connected`,
+
+`⭐ ${name}
+${category}
+Consistency Beats Talent
+🔥 Daily Motivation`,
+
+`🎮 ${name}
+${category}
+Living My Passion
+🚀 Dream Big`,
+
+`📚 ${name}
+Learning. Growing. Winning.
+${category}
+💯 Self Improvement`,
+
+`⚙️ ${name}
+Modern ${category}
+Building The Future
+🌟 Let's Connect`,
+
+`🏆 ${name}
+${category}
+Success Is A Habit
+🔥 Keep Grinding`,
+
+`🌟 ${name}
+Creative ${category}
+Making Things Happen
+📲 Follow Now`,
+
+`💰 ${name}
+${category}
+Work Smart
+Earn More
+🚀`,
+
+`🎨 ${name}
+Professional ${category}
+Sharing My Journey
+✨ Daily Content`,
+
+`📈 ${name}
+Growth Focused
+${category}
+Building My Empire`,
+
+`🚀 ${name}
+${category}
+One Step Ahead Everyday
+🔥 Never Quit`,
+
+`👊 ${name}
+${category}
+Believe. Execute. Achieve.
+⭐ Welcome To My World`
+];
+
+let html = "";
+
+bios.forEach((bio,index)=>{
+html += `
+<div class="bio-card">
+<div class="bio-text" id="bio${index}">
+${bio}
+</div>
+<button class="copy-btn" onclick="copyBio('bio${index}')">Copy</button>
+</div>
+`;
+});
+
+document.getElementById("results").innerHTML = html;
+}
+
+function copyBio(id){
+const text = document.getElementById(id).innerText;
+navigator.clipboard.writeText(text);
+alert("Bio Copied!");
+}
+
+</script>
+
+</body>
+</html>
