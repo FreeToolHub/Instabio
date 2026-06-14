@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>InstaBio - Instagram Bio Generator</title>
+<title>InstaBio - AI Instagram Bio Generator</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
@@ -26,13 +27,12 @@ margin:auto;
 
 h1{
 text-align:center;
-font-size:2.5rem;
 margin-bottom:10px;
 }
 
 .subtitle{
 text-align:center;
-color:#94a3b8;
+color:#cbd5e1;
 margin-bottom:30px;
 }
 
@@ -45,71 +45,46 @@ margin-bottom:20px;
 
 input,select{
 width:100%;
-padding:14px;
-margin-top:10px;
+padding:12px;
 border:none;
 border-radius:10px;
-background:#334155;
-color:white;
-font-size:16px;
+margin-top:10px;
+margin-bottom:15px;
 }
 
 button{
 width:100%;
 padding:14px;
-margin-top:15px;
 border:none;
 border-radius:10px;
-background:#3b82f6;
+background:#6366f1;
 color:white;
-font-size:16px;
+font-size:18px;
 cursor:pointer;
-font-weight:bold;
 }
 
 button:hover{
-background:#2563eb;
+background:#4f46e5;
 }
 
-.bio-card{
-background:#1e293b;
-padding:15px;
-border-radius:12px;
-margin-bottom:12px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-}
-
-.bio-text{
-flex:1;
+.output{
+margin-top:20px;
+padding:20px;
+background:#111827;
+border-radius:10px;
 white-space:pre-line;
 }
 
-.copy-btn{
-width:auto;
-padding:10px 15px;
-margin:0;
-background:#10b981;
+.copy{
+margin-top:10px;
+background:#22c55e;
 }
 
-.copy-btn:hover{
-background:#059669;
-}
-
-.footer{
-text-align:center;
-margin-top:30px;
+.counter{
+margin-top:10px;
 color:#94a3b8;
 }
 
-@media(max-width:600px){
-.bio-card{
-flex-direction:column;
-align-items:stretch;
-}
-}
 </style>
 </head>
 <body>
@@ -117,165 +92,111 @@ align-items:stretch;
 <div class="container">
 
 <h1>🚀 InstaBio</h1>
-<p class="subtitle">Generate Professional Instagram Bios Instantly</p>
+<p class="subtitle">Advanced Instagram Bio Generator</p>
 
 <div class="card">
-<label>Name</label>
-<input type="text" id="name" placeholder="Enter your name">
 
-<label style="margin-top:15px;display:block;">Category</label>
-<select id="category">
-<option>Creator</option>
-<option>Business</option>
-<option>Fitness</option>
-<option>Gamer</option>
-<option>Tech</option>
+<label>Name</label>
+<input id="name" placeholder="Enter Name">
+
+<label>Niche</label>
+<input id="niche" placeholder="Fitness, Tech, Gaming">
+
+<label>Bio Type</label>
+
+<select id="type">
 <option>Influencer</option>
-<option>Student</option>
-<option>Entrepreneur</option>
+<option>Business</option>
+<option>Creator</option>
+<option>Gamer</option>
+<option>Professional</option>
 </select>
 
-<button onclick="generateBios()">Generate 20 Bios</button>
+<button onclick="generateBio()">
+Generate Bio
+</button>
+
+<div id="result" class="output">
+Your bio will appear here...
 </div>
 
-<div id="results"></div>
+<div class="counter" id="counter"></div>
 
-<div class="footer">
-Made with ❤️ by InstaBio
+<button class="copy" onclick="copyBio()">
+Copy Bio
+</button>
+
 </div>
 
 </div>
 
 <script>
 
-function generateBios(){
-
-const name = document.getElementById("name").value || "Your Name";
-const category = document.getElementById("category").value;
-
-const bios = [
-
-`✨ ${name}
-${category}
-Dream. Build. Repeat.
-📩 DM For Collaboration`,
-
-`🚀 ${name}
-${category} Enthusiast
-Turning Ideas Into Reality
-👇 Follow My Journey`,
-
-`🔥 ${name}
-Passionate ${category}
-Creating Value Every Day
-📍 India`,
-
-`💎 ${name}
-${category}
-Work Hard • Stay Humble
-📬 Open For Projects`,
-
-`⚡ ${name}
-Digital ${category}
-Growth Mindset
-📈 Leveling Up Daily`,
-
-`🌍 ${name}
-${category}
-Making Every Day Count
-✨ Positive Vibes Only`,
-
-`🎯 ${name}
-${category}
-Focused On Success
-🚀 Future Millionaire`,
-
-`👑 ${name}
-Official Account
-${category}
-📩 Business Inquiries Open`,
-
-`💡 ${name}
-Innovator | ${category}
-Creating Something Amazing
-👇 Stay Connected`,
-
-`⭐ ${name}
-${category}
-Consistency Beats Talent
-🔥 Daily Motivation`,
-
-`🎮 ${name}
-${category}
-Living My Passion
-🚀 Dream Big`,
-
-`📚 ${name}
-Learning. Growing. Winning.
-${category}
-💯 Self Improvement`,
-
-`⚙️ ${name}
-Modern ${category}
-Building The Future
-🌟 Let's Connect`,
-
-`🏆 ${name}
-${category}
-Success Is A Habit
-🔥 Keep Grinding`,
-
-`🌟 ${name}
-Creative ${category}
-Making Things Happen
-📲 Follow Now`,
-
-`💰 ${name}
-${category}
-Work Smart
-Earn More
-🚀`,
-
-`🎨 ${name}
-Professional ${category}
-Sharing My Journey
-✨ Daily Content`,
-
-`📈 ${name}
-Growth Focused
-${category}
-Building My Empire`,
-
-`🚀 ${name}
-${category}
-One Step Ahead Everyday
-🔥 Never Quit`,
-
-`👊 ${name}
-${category}
-Believe. Execute. Achieve.
-⭐ Welcome To My World`
+const hooks = [
+"Building my dream",
+"Helping people daily",
+"Turning ideas into reality",
+"Creating impact",
+"Sharing my journey",
+"Growing every day",
+"Focused on success",
+"Leveling up daily",
+"Making things happen",
+"Creating the future"
 ];
 
-let html = "";
+const emojis = [
+"🚀","🔥","💎","⚡","🎯","📈","💻","🌍","❤️","✨"
+];
 
-bios.forEach((bio,index)=>{
-html += `
-<div class="bio-card">
-<div class="bio-text" id="bio${index}">
-${bio}
-</div>
-<button class="copy-btn" onclick="copyBio('bio${index}')">Copy</button>
-</div>
-`;
-});
+const endings = [
+"DM for collaborations",
+"Follow the journey",
+"Let's connect",
+"Stay inspired",
+"New content daily",
+"Big goals ahead",
+"Always learning",
+"Work hard. Dream big"
+];
 
-document.getElementById("results").innerHTML = html;
+function random(arr){
+return arr[Math.floor(Math.random()*arr.length)];
 }
 
-function copyBio(id){
-const text = document.getElementById(id).innerText;
+function generateBio(){
+
+let name=document.getElementById("name").value;
+let niche=document.getElementById("niche").value;
+let type=document.getElementById("type").value;
+
+if(!name || !niche){
+alert("Enter name and niche");
+return;
+}
+
+let bio =
+
+`${random(emojis)} ${name}
+
+${random(hooks)}
+
+${type} | ${niche}
+
+${random(emojis)} ${random(endings)}`;
+
+document.getElementById("result").innerText=bio;
+
+document.getElementById("counter").innerText =
+"Characters: "+bio.length;
+}
+
+function copyBio(){
+
+let text=document.getElementById("result").innerText;
+
 navigator.clipboard.writeText(text);
+
 alert("Bio Copied!");
 }
 
