@@ -1,206 +1,54 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>InstaBio - AI Instagram Bio Generator</title>
+<title>InstaBio - Advanced Instagram Bio Generator</title>
 
-<style>
+<link rel="stylesheet" href="style.css">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-body{
-background:#0f172a;
-color:white;
-padding:20px;
-}
-
-.container{
-max-width:900px;
-margin:auto;
-}
-
-h1{
-text-align:center;
-margin-bottom:10px;
-}
-
-.subtitle{
-text-align:center;
-color:#cbd5e1;
-margin-bottom:30px;
-}
-
-.card{
-background:#1e293b;
-padding:20px;
-border-radius:15px;
-margin-bottom:20px;
-}
-
-input,select{
-width:100%;
-padding:12px;
-border:none;
-border-radius:10px;
-margin-top:10px;
-margin-bottom:15px;
-}
-
-button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:10px;
-background:#6366f1;
-color:white;
-font-size:18px;
-cursor:pointer;
-}
-
-button:hover{
-background:#4f46e5;
-}
-
-.output{
-margin-top:20px;
-padding:20px;
-background:#111827;
-border-radius:10px;
-white-space:pre-line;
-}
-
-.copy{
-margin-top:10px;
-background:#22c55e;
-}
-
-.counter{
-margin-top:10px;
-color:#94a3b8;
-}
-
-</style>
 </head>
 <body>
 
 <div class="container">
 
-<h1>🚀 InstaBio</h1>
-<p class="subtitle">Advanced Instagram Bio Generator</p>
+<h1>🚀 InstaBio Generator</h1>
+<p>Create unique Instagram bios instantly</p>
 
 <div class="card">
 
-<label>Name</label>
-<input id="name" placeholder="Enter Name">
+<input type="text" id="name" placeholder="Your Name">
 
-<label>Niche</label>
-<input id="niche" placeholder="Fitness, Tech, Gaming">
-
-<label>Bio Type</label>
-
-<select id="type">
-<option>Influencer</option>
-<option>Business</option>
-<option>Creator</option>
-<option>Gamer</option>
-<option>Professional</option>
+<select id="niche">
+<option value="creator">Content Creator</option>
+<option value="fitness">Fitness</option>
+<option value="business">Business</option>
+<option value="tech">Tech</option>
+<option value="gamer">Gamer</option>
+<option value="student">Student</option>
+<option value="motivation">Motivational</option>
 </select>
 
-<button onclick="generateBio()">
-Generate Bio
-</button>
+<select id="tone">
+<option value="professional">Professional</option>
+<option value="cool">Cool</option>
+<option value="premium">Premium</option>
+<option value="minimal">Minimal</option>
+</select>
 
-<div id="result" class="output">
-Your bio will appear here...
-</div>
+<button onclick="generateBio()">Generate Bio</button>
 
-<div class="counter" id="counter"></div>
+<textarea id="output"></textarea>
 
-<button class="copy" onclick="copyBio()">
-Copy Bio
-</button>
-
-</div>
+<button onclick="copyBio()">Copy Bio</button>
 
 </div>
 
-<script>
+</div>
 
-const hooks = [
-"Building my dream",
-"Helping people daily",
-"Turning ideas into reality",
-"Creating impact",
-"Sharing my journey",
-"Growing every day",
-"Focused on success",
-"Leveling up daily",
-"Making things happen",
-"Creating the future"
-];
-
-const emojis = [
-"🚀","🔥","💎","⚡","🎯","📈","💻","🌍","❤️","✨"
-];
-
-const endings = [
-"DM for collaborations",
-"Follow the journey",
-"Let's connect",
-"Stay inspired",
-"New content daily",
-"Big goals ahead",
-"Always learning",
-"Work hard. Dream big"
-];
-
-function random(arr){
-return arr[Math.floor(Math.random()*arr.length)];
-}
-
-function generateBio(){
-
-let name=document.getElementById("name").value;
-let niche=document.getElementById("niche").value;
-let type=document.getElementById("type").value;
-
-if(!name || !niche){
-alert("Enter name and niche");
-return;
-}
-
-let bio =
-
-`${random(emojis)} ${name}
-
-${random(hooks)}
-
-${type} | ${niche}
-
-${random(emojis)} ${random(endings)}`;
-
-document.getElementById("result").innerText=bio;
-
-document.getElementById("counter").innerText =
-"Characters: "+bio.length;
-}
-
-function copyBio(){
-
-let text=document.getElementById("result").innerText;
-
-navigator.clipboard.writeText(text);
-
-alert("Bio Copied!");
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
